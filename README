@@ -1,0 +1,17 @@
+AO Statel Parser v1.0 (oct 2025)
+Improved by Bitnykk from public NKB's code
+This tool allows to list/search static models (statels) from AO's playfield
+
+_Install_
+After copying the depot content locally, you might have to install some Nuget packages as :
+* CommandLineParser (from Gsscoder, Nemec, Ericnewton76, Moh-hassan)
+* UnityEngine (from Leanwork)
+
+_Compile_
+Choose Debug or Release, and generate the Build
+
+_Usage_
+Once done, open cmd and get into generated AOStatelParser.exe folder with 2 subcommands :
+* parse --aopath="X:\Your\AO\Path" --pf=1234 -> this shows a shortlist of all statels present in given playfield, with ID: @XZY-Coord 0Rotate %Scale
+* search --aopath="X:\Your\AO\Path" --id=1234 -> this shows if given statel ID is found into playfields (green=found, white=found, red=error)
+
