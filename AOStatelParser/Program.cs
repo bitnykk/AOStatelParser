@@ -85,9 +85,19 @@ namespace AoStatelParser
             foreach (Statel s in InParser.Statels)
             {
                 // not using Rot, Scale nor TextureOverrides
-                if (!IdDict.ContainsKey(s.Id)) {
-                    string[] SCoords = s.Pos.ToString().Split(' ');
-                    IdDict.Add(s.Id, "/waypoint "+SCoords[0].Remove(0,1)[..^1]+ " "+SCoords[2][..^1]+ " "+opts.Pf);
+                string[] SCoords = s.Pos.ToString().Split(' ');
+                string SValue = "/waypoint " + SCoords[0].Remove(0, 1)[..^1] + " " + SCoords[2][..^1] + " " + opts.Pf;
+                if (!IdDict.ContainsKey(s.Id))
+                {                    
+                    IdDict.Add(s.Id,SValue); // 1st statel stored, but could stand outbound ...
+                } else
+                {
+                    System.Random Rnd = new System.Random();
+                    int IRoll = Rnd.Next(1, 5);
+                    if(IRoll==4)
+                    {   
+                        IdDict[s.Id] = SValue; // ... so get other statels @ 25% chances each
+                    }
                 }
             }
             Console.WriteLine(IdDict.Count + " statel(s) found");
