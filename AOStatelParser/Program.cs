@@ -65,7 +65,6 @@ namespace AoStatelParser
                 {
                     SColor = "Red";
                 }
-                Console.ForegroundColor = ConsoleColor.White;
                 if (SColor=="Green") {
                     Console.ForegroundColor = ConsoleColor.Green;
                 }
@@ -74,6 +73,7 @@ namespace AoStatelParser
                     Console.ForegroundColor = ConsoleColor.Red;
                 }
                 Console.Write(FName+" ");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 
@@ -81,12 +81,13 @@ namespace AoStatelParser
         {
             Console.Write(opts.AOPath+" "+opts.Pf+": ");
             var InParser = new StatelParser(opts.AOPath,opts.Pf);
-            Dictionary<uint, string> IdDict = new Dictionary<uint, string>();
+            SortedDictionary<uint, string> IdDict = new SortedDictionary<uint, string>();
             foreach (Statel s in InParser.Statels)
             {
-                // not showing TextureOverrides ; Pos/Rot axis order => X Z Y
+                // not using Rot, Scale nor TextureOverrides
                 if (!IdDict.ContainsKey(s.Id)) {
-                    IdDict.Add(s.Id, "@"+s.Pos+"°"+s.Rot+"%[" + s.Scale+"]");
+                    string[] SCoords = s.Pos.ToString().Split(' ');
+                    IdDict.Add(s.Id, "/waypoint "+SCoords[0].Remove(0,1)[..^1]+ " "+SCoords[2][..^1]+ " "+opts.Pf);
                 }
             }
             Console.WriteLine(IdDict.Count + " statel(s) found");
@@ -94,8 +95,9 @@ namespace AoStatelParser
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(" "+s.Key+":");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write(s.Value+" ");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 
