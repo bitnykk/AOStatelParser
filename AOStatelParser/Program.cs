@@ -3,10 +3,11 @@ using CommandLine.Text;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Linq;
 using System.Reflection;
 using System.Runtime;
+using System.Text;
+using System.Xml.Linq;
 using UnityEngine;
 
 namespace AoStatelParser
@@ -46,6 +47,7 @@ namespace AoStatelParser
             Console.Write(opts.AOPath + " " + opts.Id + ": ");
             DirectoryInfo SDir = new DirectoryInfo(Path.Combine(opts.AOPath, "cd_image/data/statels/"));
             FileInfo[] SFiles = SDir.GetFiles("*.pf");
+            int ICount = new int();
             foreach (FileInfo SFile in SFiles)
             {
                 string FName = Path.GetFileNameWithoutExtension(SFile.ToString());
@@ -58,6 +60,7 @@ namespace AoStatelParser
                         if (s.Id == opts.Id)
                         {
                             SColor = "Green";
+                            ICount = ICount + 1;
                         }
                     }
                 }
@@ -75,6 +78,8 @@ namespace AoStatelParser
                 Console.Write(FName+" ");
                 Console.ForegroundColor = ConsoleColor.White;
             }
+            Console.WriteLine("");
+            Console.WriteLine("Total:"+ICount);
         }
 
         private static void RunParsing(ParsingOptions opts)
