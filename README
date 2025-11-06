@@ -12,6 +12,5 @@ Choose Debug or Release, and generate the Build
 
 _Usage_
 Once done, open cmd and get into generated AOStatelParser.exe folder with 2 subcommands :
-* parse --aopath="X:\Your\AO\Path" --pf=1234 -> this shows a shortlist of all statels present in given playfield, with ID: @XZY-Coord 0Rotate %Scale
+* parse --aopath="X:\Your\AO\Path" --pf=1234 -> this shows structure plus shortlist of all statels present in given playfield, with waypoint for each
 * search --aopath="X:\Your\AO\Path" --id=1234 -> this shows if given statel ID is found into playfields (green=found, white=not-found, red=error)
-
