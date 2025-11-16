@@ -148,7 +148,7 @@ namespace AoStatelParser
             Pfnames[1941] = "foreman alpha";
             Pfnames[1943] = "inner sanctuum";
             Pfnames[4102] = "hope bar";
-            Pfnames[4107] = "x fixer grid x";
+            Pfnames[4107] = "fixer grid";
             Pfnames[4121] = "will to fight";
             Pfnames[4805] = "crypt of home";
             Pfnames[362] = "cata / SL statics";
